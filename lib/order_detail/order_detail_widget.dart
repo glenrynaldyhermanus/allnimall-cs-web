@@ -323,7 +323,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                       ),
                                                       Text(
                                                         orderDetailOrdersRecord
-                                                            .customerPhone,
+                                                            .rangerPhone,
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
