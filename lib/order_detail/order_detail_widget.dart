@@ -10,9 +10,11 @@ class OrderDetailWidget extends StatefulWidget {
   const OrderDetailWidget({
     Key key,
     this.order,
+    this.uid,
   }) : super(key: key);
 
   final OrdersRecord order;
+  final String uid;
 
   @override
   _OrderDetailWidgetState createState() => _OrderDetailWidgetState();
