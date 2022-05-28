@@ -47,6 +47,10 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
       home: HomeWidget(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => HomeWidget(),
+        '/order': (BuildContext context) => OrderDetailWidget(),
+      },
     );
   }
 }
