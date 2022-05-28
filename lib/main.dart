@@ -54,31 +54,14 @@ class _MyAppState extends State<MyApp> {
           final settingsUri = Uri.parse(settings.name);
           final uid = settingsUri.queryParameters['uid'];
 
-          print("OUT >> UID $uid");
-
-          FirebaseFirestore.instance
-              .collection('orders')
-              .doc(uid)
-              .get()
-              .then((DocumentSnapshot documentSnapshot) {
-            if (documentSnapshot.exists) {
-              print("OUT >> document exists");
-              print("OUT >> $documentSnapshot");
-              print("OUT >> ${documentSnapshot.data()}");
-
-
-            }
-          });
-
-          // return MaterialPageRoute(
-          //   builder: (context) {
-          //     print("OUT >> yuk ah");
-          //     return OrderDetailWidget(
-          //       order: documentSnapshot.data(),
-          //     );
-          //     print("OUT >> yuk ah");
-          //   },
-          // );
+          return MaterialPageRoute(
+            builder: (context) {
+              return OrderDetailWidget(
+                uid: uid,
+              );
+              print("OUT >> yuk ah");
+            },
+          );
         }
         // The code only supports
         // PassArgumentsScreen.routeName right now.
