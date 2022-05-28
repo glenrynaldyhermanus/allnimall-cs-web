@@ -43,21 +43,6 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
         final orderDetailOrdersRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-            automaticallyImplyLeading: false,
-            title: Text(
-              'Page Title',
-              style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                    fontSize: 22,
-                  ),
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 2,
-          ),
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           body: SafeArea(
             child: GestureDetector(
@@ -295,79 +280,108 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 15, 20, 10),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 32, 20, 0),
+                                              child: Text(
+                                                'Groomer',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 20, 10),
+                                              child: Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Text(
-                                                    orderDetailOrdersRecord
-                                                        .rangerName,
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle1,
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        orderDetailOrdersRecord
+                                                            .rangerName,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle1,
+                                                      ),
+                                                      Text(
+                                                        orderDetailOrdersRecord
+                                                            .customerPhone,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Text(
-                                                    orderDetailOrdersRecord
-                                                        .customerPhone,
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      await launchURL(functions
+                                                          .generateWhatsAppUrl(
+                                                              orderDetailOrdersRecord
+                                                                  .rangerPhone));
+                                                    },
+                                                    text: 'Chat',
+                                                    options: FFButtonOptions(
+                                                      width: 64,
+                                                      height: 40,
+                                                      color: Color(0x19EF487F),
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .title3
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryColor,
+                                                                fontSize: 14,
+                                                              ),
+                                                      elevation: 0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius: 12,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  await launchURL(functions
-                                                      .generateWhatsAppUrl(
-                                                          orderDetailOrdersRecord
-                                                              .rangerPhone));
-                                                },
-                                                text: 'Chat',
-                                                options: FFButtonOptions(
-                                                  width: 64,
-                                                  height: 40,
-                                                  color: Color(0x19EF487F),
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .title3
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryColor,
-                                                        fontSize: 14,
-                                                      ),
-                                                  elevation: 0,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius: 12,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                         Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -442,7 +456,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                 .status) ==
                                                             'Confirmed')
                                                           Text(
-                                                            'Order confirmed',
+                                                            'Order scheduled',
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
@@ -453,7 +467,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                 .status) !=
                                                             'Confirmed')
                                                           Text(
-                                                            'Order confirmed',
+                                                            'Order scheduled',
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
@@ -471,10 +485,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                 .confirmedAt !=
                                                             null))
                                                           Text(
-                                                            dateTimeFormat(
-                                                                'Hm',
-                                                                orderDetailOrdersRecord
-                                                                    .confirmedAt),
+                                                            orderDetailOrdersRecord
+                                                                .startTime,
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
