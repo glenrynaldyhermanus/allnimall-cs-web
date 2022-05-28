@@ -1,3 +1,4 @@
+import 'package:allnimall_customer_web/backend/backend.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -47,9 +48,47 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
       home: HomeWidget(),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => HomeWidget(),
-        '/order': (BuildContext context) => OrderDetailWidget(),
+      onGenerateRoute: (settings) {
+        // If you push the PassArguments route
+        if (settings.name.contains("/order") ) {
+          final settingsUri = Uri.parse(settings.name);
+          final uid = settingsUri.queryParameters['uid'];
+
+          print("OUT >> UID $uid");
+
+          FirebaseFirestore.instance
+              .collection('orders')
+              .doc(uid)
+              .get()
+              .then((DocumentSnapshot documentSnapshot) {
+            if (documentSnapshot.exists) {
+              print("OUT >> document exists");
+              print("OUT >> $documentSnapshot");
+              print("OUT >> ${documentSnapshot.data()}");
+
+
+            }
+          });
+
+          // return MaterialPageRoute(
+          //   builder: (context) {
+          //     print("OUT >> yuk ah");
+          //     return OrderDetailWidget(
+          //       order: documentSnapshot.data(),
+          //     );
+          //     print("OUT >> yuk ah");
+          //   },
+          // );
+        }
+        // The code only supports
+        // PassArgumentsScreen.routeName right now.
+        // Other values need to be implemented if we
+        // add them. The assertion here will help remind
+        // us of that higher up in the call stack, since
+        // this assertion would otherwise fire somewhere
+        // in the framework.
+        assert(false, 'Need to implement ${settings.name}');
+        return null;
       },
     );
   }
