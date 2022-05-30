@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -100,6 +102,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: InkWell(
                             onLongPress: () async {
+                              Clipboard.setData(new ClipboardData(text: "5790285478"));
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -167,6 +170,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: InkWell(
                             onLongPress: () async {
+                              Clipboard.setData(new ClipboardData(text: "1230005921541"));
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
