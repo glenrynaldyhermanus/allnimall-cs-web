@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../payment/payment_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -322,58 +323,66 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                     context)
                                                                 .subtitle1,
                                                       ),
-                                                      Text(
-                                                        orderDetailOrdersRecord
-                                                            .rangerPhone,
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      await launchURL(functions
-                                                          .generateWhatsAppUrl(
-                                                              orderDetailOrdersRecord
-                                                                  .rangerPhone));
-                                                    },
-                                                    text: 'Chat',
-                                                    options: FFButtonOptions(
-                                                      width: 64,
-                                                      height: 40,
-                                                      color: Color(0x19EF487F),
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title3
+                                                      if (functions
+                                                              .isCustomerAbleChatGroomer(
+                                                                  orderDetailOrdersRecord) ??
+                                                          true)
+                                                        Text(
+                                                          orderDetailOrdersRecord
+                                                              .rangerPhone,
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryColor,
-                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
-                                                      elevation: 0,
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius: 12,
-                                                    ),
+                                                        ),
+                                                    ],
                                                   ),
+                                                  if (functions
+                                                          .isCustomerAbleChatGroomer(
+                                                              orderDetailOrdersRecord) ??
+                                                      true)
+                                                    FFButtonWidget(
+                                                      onPressed: () async {
+                                                        await launchURL(functions
+                                                            .generateWhatsAppUrl(
+                                                                orderDetailOrdersRecord
+                                                                    .rangerPhone));
+                                                      },
+                                                      text: 'Chat',
+                                                      options: FFButtonOptions(
+                                                        width: 64,
+                                                        height: 40,
+                                                        color:
+                                                            Color(0x19EF487F),
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .title3
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryColor,
+                                                                  fontSize: 14,
+                                                                ),
+                                                        elevation: 0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius: 12,
+                                                      ),
+                                                    ),
                                                 ],
                                               ),
                                             ),
@@ -889,40 +898,50 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Expanded(
-                                          child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('btnPaid pressed ...');
-                                            },
-                                            text: 'Sudah Bayar',
-                                            icon: Icon(
-                                              Icons.check_rounded,
-                                              size: 15,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: double.infinity,
-                                              height: 60,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .subtitle2
-                                                  .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
+                                        if (functions.isOrderPayable(
+                                                orderDetailOrdersRecord) ??
+                                            true)
+                                          Expanded(
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PaymentWidget(
+                                                      order:
+                                                          orderDetailOrdersRecord,
+                                                    ),
                                                   ),
-                                              elevation: 3,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
+                                                );
+                                              },
+                                              text: 'Pembayaran',
+                                              options: FFButtonOptions(
+                                                width: double.infinity,
+                                                height: 60,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color: Colors.white,
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                elevation: 3,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius: 8,
                                               ),
-                                              borderRadius: 8,
                                             ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                   ),
