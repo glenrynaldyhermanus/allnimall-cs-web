@@ -271,7 +271,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await launchURL(
-                                  'https://api.whatsapp.com/send?phone=6285163707044&text=Konfirmasi%pembayaran%20untuk%20order%20${widget.order.orderNo}');
+                                  'https://api.whatsapp.com/send?phone=6285163707044&text=Konfirmasi%20pembayaran%20untuk%20order%20${widget.order.orderNo}');
                             },
                             text: 'Konfirmasi Pembayaran',
                             options: FFButtonOptions(
