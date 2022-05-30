@@ -10,11 +10,11 @@ class OrderDetailWidget extends StatefulWidget {
   const OrderDetailWidget({
     Key key,
     this.order,
-    this.uid,
+    this.orderNo,
   }) : super(key: key);
 
   final OrdersRecord order;
-  final String uid;
+  final String orderNo;
 
   @override
   _OrderDetailWidgetState createState() => _OrderDetailWidgetState();
@@ -26,7 +26,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrdersRecord>(
-      stream: widget.order != null ? OrdersRecord.getDocument(widget.order.reference) : FirebaseFirestore.instance.collection('orders').doc(widget.uid).snapshots().map((s) => serializers.deserializeWith(OrdersRecord.serializer, serializedData(s))),
+      stream: widget.order != null ? OrdersRecord.getDocument(widget.order.reference) : FirebaseFirestore.instance.collection('orders').where("orderNo", isEqualTo: widget.orderNo).snapshots().map((s) => serializers.deserializeWith(OrdersRecord.serializer, serializedData(s.docs.first))),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {

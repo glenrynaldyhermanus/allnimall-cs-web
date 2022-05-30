@@ -52,12 +52,12 @@ class _MyAppState extends State<MyApp> {
         // If you push the PassArguments route
         if (settings.name.contains("/order") ) {
           final settingsUri = Uri.parse(settings.name);
-          final uid = settingsUri.queryParameters['uid'];
+          final orderNo = settingsUri.queryParameters['no'];
 
           return MaterialPageRoute(
             builder: (context) {
               return OrderDetailWidget(
-                uid: uid,
+                orderNo: orderNo,
               );
               print("OUT >> yuk ah");
             },
