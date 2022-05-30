@@ -35,7 +35,7 @@ bool isOpenForRating(OrdersRecord order) {
   // Add your function code here!
   if (order.status == "Finish" &&
       order.paymentStatus == "Paid" &&
-      order.rate == null) {
+      order.rate == 0) {
     return true;
   }
   return false;
