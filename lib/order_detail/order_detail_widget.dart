@@ -614,8 +614,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               );
                                             },
                                           ),
-                                        if ((orderDetailOrdersRecord.rate !=
-                                            null))
+                                        if (functions.isAlreadyRated(
+                                                orderDetailOrdersRecord) ??
+                                            true)
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
