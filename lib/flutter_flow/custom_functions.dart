@@ -48,3 +48,11 @@ double calculateRate(
   // Add your function code here!
   return (newRate + existingRate).toDouble() / 2;
 }
+
+bool isAlreadyRated(OrdersRecord order) {
+  // Add your function code here!
+  if (order.rate == null) {
+    return false;
+  }
+  return true;
+}
