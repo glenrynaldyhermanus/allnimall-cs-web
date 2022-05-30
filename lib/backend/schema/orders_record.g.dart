@@ -222,6 +222,27 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.rate;
+    if (value != null) {
+      result
+        ..add('rate')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.comment;
+    if (value != null) {
+      result
+        ..add('comment')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.rangerUid;
+    if (value != null) {
+      result
+        ..add('ranger_uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -360,6 +381,20 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
           result.cancelledAt = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
           break;
+        case 'rate':
+          result.rate = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'comment':
+          result.comment = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'ranger_uid':
+          result.rangerUid = serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -433,6 +468,12 @@ class _$OrdersRecord extends OrdersRecord {
   @override
   final DateTime cancelledAt;
   @override
+  final int rate;
+  @override
+  final String comment;
+  @override
+  final DocumentReference<Object> rangerUid;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$OrdersRecord([void Function(OrdersRecordBuilder) updates]) =>
@@ -468,6 +509,9 @@ class _$OrdersRecord extends OrdersRecord {
       this.paidAt,
       this.paymentMethod,
       this.cancelledAt,
+      this.rate,
+      this.comment,
+      this.rangerUid,
       this.reference})
       : super._();
 
@@ -511,6 +555,9 @@ class _$OrdersRecord extends OrdersRecord {
         paidAt == other.paidAt &&
         paymentMethod == other.paymentMethod &&
         cancelledAt == other.cancelledAt &&
+        rate == other.rate &&
+        comment == other.comment &&
+        rangerUid == other.rangerUid &&
         reference == other.reference;
   }
 
@@ -534,25 +581,25 @@ class _$OrdersRecord extends OrdersRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), scheduledAt.hashCode), customerAddress.hashCode), status.hashCode), customerLatlng.hashCode),
-                                                                                customerName.hashCode),
-                                                                            paymentStatus.hashCode),
-                                                                        prefferedTime.hashCode),
-                                                                    discount.hashCode),
-                                                                notes.hashCode),
-                                                            startTime.hashCode),
-                                                        endTime.hashCode),
-                                                    rangerName.hashCode),
-                                                rangerPhone.hashCode),
-                                            rangerProfilePicture.hashCode),
-                                        confirmedAt.hashCode),
-                                    customerPhone.hashCode),
-                                onthewayAt.hashCode),
-                            workingAt.hashCode),
-                        finishAt.hashCode),
-                    paidAt.hashCode),
-                paymentMethod.hashCode),
-            cancelledAt.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), scheduledAt.hashCode), customerAddress.hashCode), status.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode), prefferedTime.hashCode),
+                                                                                discount.hashCode),
+                                                                            notes.hashCode),
+                                                                        startTime.hashCode),
+                                                                    endTime.hashCode),
+                                                                rangerName.hashCode),
+                                                            rangerPhone.hashCode),
+                                                        rangerProfilePicture.hashCode),
+                                                    confirmedAt.hashCode),
+                                                customerPhone.hashCode),
+                                            onthewayAt.hashCode),
+                                        workingAt.hashCode),
+                                    finishAt.hashCode),
+                                paidAt.hashCode),
+                            paymentMethod.hashCode),
+                        cancelledAt.hashCode),
+                    rate.hashCode),
+                comment.hashCode),
+            rangerUid.hashCode),
         reference.hashCode));
   }
 
@@ -588,6 +635,9 @@ class _$OrdersRecord extends OrdersRecord {
           ..add('paidAt', paidAt)
           ..add('paymentMethod', paymentMethod)
           ..add('cancelledAt', cancelledAt)
+          ..add('rate', rate)
+          ..add('comment', comment)
+          ..add('rangerUid', rangerUid)
           ..add('reference', reference))
         .toString();
   }
@@ -720,6 +770,19 @@ class OrdersRecordBuilder
   DateTime get cancelledAt => _$this._cancelledAt;
   set cancelledAt(DateTime cancelledAt) => _$this._cancelledAt = cancelledAt;
 
+  int _rate;
+  int get rate => _$this._rate;
+  set rate(int rate) => _$this._rate = rate;
+
+  String _comment;
+  String get comment => _$this._comment;
+  set comment(String comment) => _$this._comment = comment;
+
+  DocumentReference<Object> _rangerUid;
+  DocumentReference<Object> get rangerUid => _$this._rangerUid;
+  set rangerUid(DocumentReference<Object> rangerUid) =>
+      _$this._rangerUid = rangerUid;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -761,6 +824,9 @@ class OrdersRecordBuilder
       _paidAt = $v.paidAt;
       _paymentMethod = $v.paymentMethod;
       _cancelledAt = $v.cancelledAt;
+      _rate = $v.rate;
+      _comment = $v.comment;
+      _rangerUid = $v.rangerUid;
       _reference = $v.reference;
       _$v = null;
     }
@@ -811,6 +877,9 @@ class OrdersRecordBuilder
             paidAt: paidAt,
             paymentMethod: paymentMethod,
             cancelledAt: cancelledAt,
+            rate: rate,
+            comment: comment,
+            rangerUid: rangerUid,
             reference: reference);
     replace(_$result);
     return _$result;
