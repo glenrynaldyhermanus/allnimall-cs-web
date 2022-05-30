@@ -459,7 +459,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            Color(0xFF797979),
+                                                            Color(0xFFB5B5B5),
                                                         width: 2,
                                                       ),
                                                       borderRadius:
@@ -470,7 +470,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            Color(0xFF797979),
+                                                            Color(0xFFB5B5B5),
                                                         width: 2,
                                                       ),
                                                       borderRadius:
