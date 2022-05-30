@@ -51,8 +51,8 @@ double calculateRate(
 
 bool isAlreadyRated(OrdersRecord order) {
   // Add your function code here!
-  if (order.rate == null) {
-    return false;
+  if (order.rate != null && order.rate > 0) {
+    return true;
   }
-  return true;
+  return false;
 }
