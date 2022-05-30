@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/orders_record.dart';
+import 'schema/rangers_record.dart';
+import 'schema/ratings_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -12,6 +14,8 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/orders_record.dart';
+export 'schema/rangers_record.dart';
+export 'schema/ratings_record.dart';
 
 /// Functions to query OrdersRecords (as a Stream and as a Future).
 Stream<List<OrdersRecord>> queryOrdersRecord({
@@ -49,6 +53,93 @@ Future<FFFirestorePage<OrdersRecord>> queryOrdersRecordPage({
     queryCollectionPage(
       OrdersRecord.collection,
       OrdersRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query RangersRecords (as a Stream and as a Future).
+Stream<List<RangersRecord>> queryRangersRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RangersRecord.collection,
+      RangersRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RangersRecord>> queryRangersRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RangersRecord.collection,
+      RangersRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<RangersRecord>> queryRangersRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      RangersRecord.collection,
+      RangersRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query RatingsRecords (as a Stream and as a Future).
+Stream<List<RatingsRecord>> queryRatingsRecord({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RatingsRecord.collection(parent),
+      RatingsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RatingsRecord>> queryRatingsRecordOnce({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RatingsRecord.collection(parent),
+      RatingsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<RatingsRecord>> queryRatingsRecordPage({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      RatingsRecord.collection(parent),
+      RatingsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
