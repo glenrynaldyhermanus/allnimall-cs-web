@@ -20,3 +20,13 @@ bool isCustomerAbleChatGroomer(OrdersRecord order) {
   }
   return false;
 }
+
+bool isOrderPayable(OrdersRecord order) {
+  // Add your function code here!
+  if ((order.status == "Working" || order.status == "Finish") &&
+      order.paymentStatus == "Unpaid") {
+    return true;
+  }
+
+  return false;
+}
