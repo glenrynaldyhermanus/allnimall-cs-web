@@ -13,3 +13,10 @@ String generateWhatsAppUrl(String phone) {
   phone = phone.replaceAll("+", "").trim();
   return "https://api.whatsapp.com/send?phone=" + phone;
 }
+
+bool isCustomerAbleChatGroomer(OrdersRecord order) {
+  if (order.status == "OnTheWay" || order.status == "Working") {
+    return true;
+  }
+  return false;
+}

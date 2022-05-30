@@ -321,58 +321,66 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                     context)
                                                                 .subtitle1,
                                                       ),
-                                                      Text(
-                                                        orderDetailOrdersRecord
-                                                            .rangerPhone,
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      await launchURL(functions
-                                                          .generateWhatsAppUrl(
-                                                              orderDetailOrdersRecord
-                                                                  .rangerPhone));
-                                                    },
-                                                    text: 'Chat',
-                                                    options: FFButtonOptions(
-                                                      width: 64,
-                                                      height: 40,
-                                                      color: Color(0x19EF487F),
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title3
+                                                      if (functions
+                                                              .isCustomerAbleChatGroomer(
+                                                                  orderDetailOrdersRecord) ??
+                                                          true)
+                                                        Text(
+                                                          orderDetailOrdersRecord
+                                                              .rangerPhone,
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryColor,
-                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
-                                                      elevation: 0,
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius: 12,
-                                                    ),
+                                                        ),
+                                                    ],
                                                   ),
+                                                  if (functions
+                                                          .isCustomerAbleChatGroomer(
+                                                              orderDetailOrdersRecord) ??
+                                                      true)
+                                                    FFButtonWidget(
+                                                      onPressed: () async {
+                                                        await launchURL(functions
+                                                            .generateWhatsAppUrl(
+                                                                orderDetailOrdersRecord
+                                                                    .rangerPhone));
+                                                      },
+                                                      text: 'Chat',
+                                                      options: FFButtonOptions(
+                                                        width: 64,
+                                                        height: 40,
+                                                        color:
+                                                            Color(0x19EF487F),
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .title3
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryColor,
+                                                                  fontSize: 14,
+                                                                ),
+                                                        elevation: 0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius: 12,
+                                                      ),
+                                                    ),
                                                 ],
                                               ),
                                             ),
@@ -893,11 +901,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             onPressed: () {
                                               print('btnPaid pressed ...');
                                             },
-                                            text: 'Sudah Bayar',
-                                            icon: Icon(
-                                              Icons.check_rounded,
-                                              size: 15,
-                                            ),
+                                            text: 'Pembayaran',
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 60,
