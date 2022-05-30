@@ -430,7 +430,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 ),
                                                 direction: Axis.horizontal,
                                                 initialRating:
-                                                    ratingBarValue1 ??= 3,
+                                                    ratingBarValue1 ??= 0,
                                                 unratedColor: Color(0xFF9E9E9E),
                                                 itemCount: 5,
                                                 itemSize: 44,
@@ -491,8 +491,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     .fromSTEB(48, 10, 48, 32),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
-                                                    if ((ratingBarValue1 !=
-                                                        null)) {
+                                                    if ((ratingBarValue1) >
+                                                        0.0) {
                                                       final ordersUpdateData =
                                                           createOrdersRecordData(
                                                         rate: ratingBarValue1
