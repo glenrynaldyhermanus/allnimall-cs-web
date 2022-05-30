@@ -120,6 +120,16 @@ abstract class OrdersRecord
   DateTime get cancelledAt;
 
   @nullable
+  int get rate;
+
+  @nullable
+  String get comment;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_uid')
+  DocumentReference get rangerUid;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -143,7 +153,9 @@ abstract class OrdersRecord
     ..rangerPhone = ''
     ..rangerProfilePicture = ''
     ..customerPhone = ''
-    ..paymentMethod = '';
+    ..paymentMethod = ''
+    ..rate = 0
+    ..comment = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('orders');
@@ -196,6 +208,9 @@ Map<String, dynamic> createOrdersRecordData({
   DateTime paidAt,
   String paymentMethod,
   DateTime cancelledAt,
+  int rate,
+  String comment,
+  DocumentReference rangerUid,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -228,4 +243,7 @@ Map<String, dynamic> createOrdersRecordData({
           ..finishAt = finishAt
           ..paidAt = paidAt
           ..paymentMethod = paymentMethod
-          ..cancelledAt = cancelledAt));
+          ..cancelledAt = cancelledAt
+          ..rate = rate
+          ..comment = comment
+          ..rangerUid = rangerUid));

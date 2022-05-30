@@ -30,3 +30,21 @@ bool isOrderPayable(OrdersRecord order) {
 
   return false;
 }
+
+bool isOpenForRating(OrdersRecord order) {
+  // Add your function code here!
+  if (order.status == "Finish" &&
+      order.paymentStatus == "Paid" &&
+      order.rate == null) {
+    return true;
+  }
+  return false;
+}
+
+double calculateRate(
+  int newRate,
+  double existingRate,
+) {
+  // Add your function code here!
+  return (newRate + existingRate).toDouble() / 2;
+}
