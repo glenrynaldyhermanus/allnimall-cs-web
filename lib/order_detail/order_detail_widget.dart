@@ -25,8 +25,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print('"OUT >> '+widget.orderNo);
     return StreamBuilder<OrdersRecord>(
-      stream: widget.order != null ? OrdersRecord.getDocument(widget.order.reference) : FirebaseFirestore.instance.collection('orders').where("orderNo", isEqualTo: widget.orderNo).snapshots().map((s) => serializers.deserializeWith(OrdersRecord.serializer, serializedData(s.docs.first))),
+      stream: widget.order != null ? OrdersRecord.getDocument(widget.order.reference) : FirebaseFirestore.instance.collection('orders').where("order_no", isEqualTo: widget.orderNo).snapshots().map((s) => serializers.deserializeWith(OrdersRecord.serializer, serializedData(s.docs.first))),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
