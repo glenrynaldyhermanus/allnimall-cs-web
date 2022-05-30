@@ -43,7 +43,7 @@ bool isOpenForRating(OrdersRecord order) {
 
 double calculateRate(
   int newRate,
-  int existingRate,
+  double existingRate,
 ) {
   // Add your function code here!
   return (newRate + existingRate).toDouble() / 2;

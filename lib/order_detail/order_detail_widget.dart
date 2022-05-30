@@ -401,153 +401,218 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                         if (functions.isOpenForRating(
                                                 orderDetailOrdersRecord) ??
                                             true)
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 32, 20, 0),
-                                                child: Text(
-                                                  'Give your rating',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
-                                                ),
-                                              ),
-                                              RatingBar.builder(
-                                                onRatingUpdate: (newValue) =>
-                                                    setState(() =>
-                                                        ratingBarValue1 =
-                                                            newValue),
-                                                itemBuilder: (context, index) =>
-                                                    Icon(
-                                                  Icons.star_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryColor,
-                                                ),
-                                                direction: Axis.horizontal,
-                                                initialRating:
-                                                    ratingBarValue1 ??= 3,
-                                                unratedColor: Color(0xFF9E9E9E),
-                                                itemCount: 5,
-                                                itemSize: 44,
-                                                glowColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryColor,
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(24, 12, 24, 0),
-                                                child: TextFormField(
-                                                  controller: textController,
-                                                  onChanged: (_) =>
-                                                      EasyDebounce.debounce(
-                                                    'textController',
-                                                    Duration(
-                                                        milliseconds: 2000),
-                                                    () => setState(() {}),
-                                                  ),
-                                                  autofocus: true,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    labelText: 'Comment',
-                                                    hintText: 'Comment...',
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Color(0xFF797979),
-                                                        width: 2,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Color(0xFF797979),
-                                                        width: 2,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
+                                          StreamBuilder<RangersRecord>(
+                                            stream: RangersRecord.getDocument(
+                                                orderDetailOrdersRecord
+                                                    .rangerUid),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50,
+                                                    height: 50,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
-                                                  maxLines: 3,
-                                                  keyboardType:
-                                                      TextInputType.multiline,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(48, 10, 48, 32),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if ((ratingBarValue1 !=
-                                                        null)) {
-                                                      final ordersUpdateData =
-                                                          createOrdersRecordData(
-                                                        rate: ratingBarValue1
-                                                            .round(),
-                                                        comment:
-                                                            textController.text,
-                                                      );
-                                                      await orderDetailOrdersRecord
-                                                          .reference
-                                                          .update(
-                                                              ordersUpdateData);
-
-                                                      final ratingsCreateData =
-                                                          createRatingsRecordData(
-                                                        orderUid:
-                                                            orderDetailOrdersRecord
-                                                                .reference,
-                                                        orderNo:
-                                                            orderDetailOrdersRecord
-                                                                .orderNo,
-                                                        rate: ratingBarValue1
-                                                            .round(),
-                                                        comment:
-                                                            textController.text,
-                                                      );
-                                                      await RatingsRecord.createDoc(
-                                                              orderDetailOrdersRecord
-                                                                  .rangerUid)
-                                                          .set(
-                                                              ratingsCreateData);
-                                                    }
-                                                  },
-                                                  text: 'Submit ',
-                                                  options: FFButtonOptions(
-                                                    width: double.infinity,
-                                                    height: 44,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryColor,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: Colors.white,
+                                                );
+                                              }
+                                              final columnRangersRecord =
+                                                  snapshot.data;
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                20, 32, 20, 0),
+                                                    child: Text(
+                                                      'Give your rating',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  RatingBar.builder(
+                                                    onRatingUpdate: (newValue) =>
+                                                        setState(() =>
+                                                            ratingBarValue1 =
+                                                                newValue),
+                                                    itemBuilder:
+                                                        (context, index) =>
+                                                            Icon(
+                                                      Icons.star_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                    ),
+                                                    direction: Axis.horizontal,
+                                                    initialRating:
+                                                        ratingBarValue1 ??= 3,
+                                                    unratedColor:
+                                                        Color(0xFF9E9E9E),
+                                                    itemCount: 5,
+                                                    itemSize: 44,
+                                                    glowColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryColor,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                24, 12, 24, 0),
+                                                    child: TextFormField(
+                                                      controller:
+                                                          textController,
+                                                      onChanged: (_) =>
+                                                          EasyDebounce.debounce(
+                                                        'textController',
+                                                        Duration(
+                                                            milliseconds: 2000),
+                                                        () => setState(() {}),
+                                                      ),
+                                                      autofocus: true,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelText: 'Comment',
+                                                        hintText: 'Comment...',
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Color(
+                                                                0xFF797979),
+                                                            width: 2,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
                                                         ),
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1,
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Color(
+                                                                0xFF797979),
+                                                            width: 2,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                      maxLines: 3,
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .multiline,
                                                     ),
-                                                    borderRadius: 4,
                                                   ),
-                                                ),
-                                              ),
-                                            ],
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                48, 10, 48, 32),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        if ((ratingBarValue1 !=
+                                                            null)) {
+                                                          final ordersUpdateData =
+                                                              createOrdersRecordData(
+                                                            rate:
+                                                                ratingBarValue1
+                                                                    .round(),
+                                                            comment:
+                                                                textController
+                                                                    .text,
+                                                          );
+                                                          await orderDetailOrdersRecord
+                                                              .reference
+                                                              .update(
+                                                                  ordersUpdateData);
+
+                                                          final ratingsCreateData =
+                                                              createRatingsRecordData(
+                                                            orderUid:
+                                                                orderDetailOrdersRecord
+                                                                    .reference,
+                                                            orderNo:
+                                                                orderDetailOrdersRecord
+                                                                    .orderNo,
+                                                            rate:
+                                                                ratingBarValue1
+                                                                    .round(),
+                                                            comment:
+                                                                textController
+                                                                    .text,
+                                                          );
+                                                          await RatingsRecord.createDoc(
+                                                                  orderDetailOrdersRecord
+                                                                      .rangerUid)
+                                                              .set(
+                                                                  ratingsCreateData);
+
+                                                          final rangersUpdateData =
+                                                              createRangersRecordData(
+                                                            rate: functions
+                                                                .calculateRate(
+                                                                    ratingBarValue1
+                                                                        .round(),
+                                                                    columnRangersRecord
+                                                                        .rate),
+                                                          );
+                                                          await columnRangersRecord
+                                                              .reference
+                                                              .update(
+                                                                  rangersUpdateData);
+                                                        }
+                                                      },
+                                                      text: 'Submit ',
+                                                      options: FFButtonOptions(
+                                                        width: double.infinity,
+                                                        height: 44,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius: 4,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           ),
                                         if ((orderDetailOrdersRecord.rate !=
                                             null))
