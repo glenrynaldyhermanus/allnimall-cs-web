@@ -160,6 +160,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                       0, 0, 12, 0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      Clipboard.setData(new ClipboardData(text: "5790285478"));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -263,6 +264,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                       0, 0, 12, 0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      Clipboard.setData(new ClipboardData(text: "1230005921541"));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
