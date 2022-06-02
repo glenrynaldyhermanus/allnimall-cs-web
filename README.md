@@ -1,4 +1,4 @@
-# AllnimallCustomerWeb
+# Allnimall Website
 
 A new Flutter project.
 
