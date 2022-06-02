@@ -1,6 +1,6 @@
 {
-    "name": "AllnimallCustomerWeb",
-    "short_name": "AllnimallCustomerWeb",
+    "name": "Allnimall Website",
+    "short_name": "Allnimall Website",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
