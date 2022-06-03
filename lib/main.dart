@@ -1,4 +1,4 @@
-import 'package:allnimall_customer_web/backend/backend.dart';
+import 'package:allnimall_website/backend/backend.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
